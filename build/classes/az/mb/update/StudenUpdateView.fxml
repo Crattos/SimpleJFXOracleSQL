@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="227.00009999999747" prefWidth="316.9999000000025" xmlns:fx="http://javafx.com/fxml" fx:controller="az.mb.update.StudenUpdateViewController">
+  <children>
+    <Label layoutX="20.0" layoutY="28.0" text="Name:" />
+    <Label layoutX="20.0" layoutY="70.0" text="Surname:" />
+    <Label layoutX="20.0" layoutY="116.0" text="Age:" />
+    <Label layoutX="20.0" layoutY="155.0" text="Email:" />
+    <TextField fx:id="name" layoutX="100.0" layoutY="25.0" prefWidth="189.0" promptText="name" />
+    <TextField id="surnamme" fx:id="surname" layoutX="100.0" layoutY="67.0" prefWidth="189.0" promptText="surname" />
+    <TextField fx:id="age" layoutX="100.0" layoutY="110.0" prefWidth="189.0" promptText="age" />
+    <TextField fx:id="email" layoutX="100.0" layoutY="152.0" prefWidth="189.0" promptText="email" />
+    <Button id="insert" fx:id="btnInsert" layoutX="100.0" layoutY="188.0" mnemonicParsing="false" onAction="#insert" prefHeight="25.0001220703125" prefWidth="65.0" text="Insert" />
+    <Button id="cancel" fx:id="btnCancel" layoutX="182.0" layoutY="188.0" mnemonicParsing="false" onAction="#cancel" prefHeight="26.0" prefWidth="65.0" text="Cancel" />
+  </children>
+</AnchorPane>
