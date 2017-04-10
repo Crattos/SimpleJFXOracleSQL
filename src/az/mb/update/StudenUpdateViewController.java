@@ -23,10 +23,9 @@ public class StudenUpdateViewController implements Initializable {
     @FXML
     private void insert(ActionEvent event) {        
         pojo.setId(id);
-        pojo.setName(name.getText());
-        pojo.setSurname(surname.getText());
-        pojo.setAge(Integer.parseInt(age.getText()));
+        pojo.setNick(name.getText());
         pojo.setEmail(email.getText());
+        pojo.setIsAdmin(Integer.parseInt(age.getText()));
         ssql.updateStudent(pojo);
         Stage stage = (Stage) btnInsert.getScene().getWindow();
         stage.close();
@@ -42,10 +41,9 @@ public class StudenUpdateViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          StudentPojo pojo = ssql.findByID(id);
          System.out.println(id);
-         name.setText(pojo.getName());
-         surname.setText(pojo.getSurname());
-         age.setText(String.valueOf(pojo.getAge()));
+         name.setText(pojo.getNick());
          email.setText(pojo.getEmail());
-       
+        age.setText(String.valueOf(pojo.getIsAdmin()));
+
     }
 }

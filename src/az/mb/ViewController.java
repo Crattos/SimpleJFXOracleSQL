@@ -25,9 +25,9 @@ public class ViewController implements Initializable {
     @FXML
     private TableView<StudentPojo> table;
     @FXML
-    private TableColumn<StudentPojo,String>name,surname,email;
+    private TableColumn<StudentPojo,String> nick,email;
     @FXML
-    private TableColumn<StudentPojo,Integer>age,id;
+    private TableColumn<StudentPojo,Integer> isAdmin,id;
     @FXML
     private ObservableList<StudentPojo> list = FXCollections.observableArrayList();
     StudentSQL ssql = new StudentSQL();
@@ -71,10 +71,9 @@ public class ViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) { 
         
         id.setCellValueFactory(new PropertyValueFactory<StudentPojo,Integer>("id"));
-        age.setCellValueFactory(new PropertyValueFactory<StudentPojo,Integer>("age"));
-        name.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("name"));
-        surname.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("surname"));
-        email.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("email"));        
+        nick.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("nick"));
+        email.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("email"));
+        isAdmin.setCellValueFactory(new PropertyValueFactory<StudentPojo,Integer>("isAdmin"));
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         list = ssql.listStudent();
         table.setItems(list);

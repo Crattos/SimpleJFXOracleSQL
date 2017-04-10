@@ -1,15 +1,14 @@
 
 package az.main;
 
-import com.mysql.jdbc.Driver;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import oracle.jdbc.pool.OracleDataSource;
 
 public class StudentSQL {
     
@@ -18,9 +17,17 @@ public class StudentSQL {
     
     private void connected(){
         try {
-            DriverManager.registerDriver(new Driver());
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fxbase?zeroDateTimeBehavior=convertToNull","root","123456");
-            statement = connection.createStatement();
+          /*  DriverManager.registerDriver(new Driver());
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","wpatryk","wpatryk123");
+            statement = connection.createStatement();*/
+
+            OracleDataSource ds;
+            ds = new OracleDataSource();
+            String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:ORCL";
+            ds.setURL(jdbcUrl);
+            connection=ds.getConnection("wpatryk","wpatryk123");
+            statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,7 +44,7 @@ public class StudentSQL {
     public void insertStudent(StudentPojo pojo){
         try {
             connected();
-            String sql = "Insert into Student values("+pojo.getId()+",'"+pojo.getName()+"','"+pojo.getSurname()+"',"+pojo.getAge()+",'"+pojo.getEmail()+"')";
+            String sql = "Insert into Uzytkownicy values("+pojo.getId()+",'"+pojo.getNick()+"','"+"',"+pojo.getEmail()+",'"+pojo.getIsAdmin()+"')";
             statement.executeUpdate(sql);
             System.out.println(sql);
             closed();
@@ -50,14 +57,13 @@ public class StudentSQL {
         try {
             connected();
             ObservableList<StudentPojo>list = FXCollections.observableArrayList();
-            ResultSet rs = statement.executeQuery("Select * from Student");
+            ResultSet rs = statement.executeQuery("Select * from Uzytkownicy");
             while(rs.next()){
                 StudentPojo pojo = new StudentPojo();
                 pojo.setId(rs.getInt(1));
-                pojo.setName(rs.getString(2));
-                pojo.setSurname(rs.getString(3));
-                pojo.setAge(rs.getInt(4));
-                pojo.setEmail(rs.getString(5));
+                pojo.setNick(rs.getString(2));
+                pojo.setEmail(rs.getString(3));
+                pojo.setIsAdmin(rs.getInt(4));
                 list.add(pojo);
                 System.out.println(String.valueOf(list));
             }
@@ -73,14 +79,13 @@ public class StudentSQL {
         try {
             connected();
             List<StudentPojo>list =new ArrayList<StudentPojo>();
-            ResultSet rs = statement.executeQuery("Select * from Student");
+            ResultSet rs = statement.executeQuery("Select * from Uzytkownicy");
             while(rs.next()){
                 StudentPojo pojo = new StudentPojo();
                 pojo.setId(rs.getInt(1));
-                pojo.setName(rs.getString(2));
-                pojo.setSurname(rs.getString(3));
-                pojo.setAge(rs.getInt(4));
-                pojo.setEmail(rs.getString(5));
+                pojo.setNick(rs.getString(2));
+                pojo.setEmail(rs.getString(3));
+                pojo.setIsAdmin(rs.getInt(4));
                 list.add(pojo);
             }
             return list;
@@ -95,7 +100,7 @@ public class StudentSQL {
     public void updateStudent(StudentPojo pojo){
         try {
             connected();
-            String sql = "Update student set name='"+pojo.getName()+"',surname = '"+pojo.getSurname()+"',age = "+pojo.getAge()+",email = '"+pojo.getEmail()+"' Where id = "+pojo.getId();
+            String sql = "Update Uzytkownicy set nick='"+pojo.getNick()+"',isAdmin = "+pojo.getIsAdmin()+",email = '"+pojo.getEmail()+"' Where id_uzytkownika = "+pojo.getId();
             statement.executeUpdate(sql);
             System.out.println(sql);
         } catch (Exception e) {
@@ -108,7 +113,7 @@ public class StudentSQL {
     public void deleteStudent(int id){
         try {
             connected();
-            statement.executeUpdate("Delete from student where id = "+id);
+            statement.executeUpdate("Delete from Uzytkownicy where id_uzytkownika = "+id);
         } catch (Exception e) {
         }finally{
            closed();
@@ -119,7 +124,7 @@ public class StudentSQL {
         try {
             connected();
             int max = 1;
-            ResultSet rs = statement.executeQuery("Select max(id) From student");
+            ResultSet rs = statement.executeQuery("Select max(ID_UZYTKOWNIKA) From Uzytkownicy");
             rs.next();
             max = rs.getInt(1);
             rs.close();
@@ -133,14 +138,13 @@ public class StudentSQL {
      public StudentPojo findByID(int id){
          try {
              connected();
-             ResultSet rs = statement.executeQuery("Select * from Student where id="+id);
+             ResultSet rs = statement.executeQuery("Select * from Uzytkownicy where ID_UZYTKOWNIKA="+id);
              StudentPojo pojo = new StudentPojo();
              while(rs.next()){
                  pojo.setId(rs.getInt(1));
-                 pojo.setName(rs.getString(2));
-                 pojo.setSurname(rs.getString(3));
-                 pojo.setAge(rs.getInt(4));
-                 pojo.setEmail(rs.getString(5));                
+                 pojo.setNick(rs.getString(2));
+                 pojo.setEmail(rs.getString(3));
+                 pojo.setIsAdmin(rs.getInt(4));
              }
              return pojo;
          } catch (Exception e) {

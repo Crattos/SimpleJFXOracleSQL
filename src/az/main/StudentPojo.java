@@ -5,19 +5,17 @@ import java.io.Serializable;
 public class StudentPojo implements Serializable {
 
     private int id;
-    private String name;
-    private String surname;
-    private int age;
+    private String nick;
+    private int isAdmin;
     private String email;
 
     public StudentPojo() {
     }
 
-    public StudentPojo(int id, String name, String surname, int age, String email) {
+    public StudentPojo(int id, String name, String surname, int isAdmin, String email) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
+        this.nick = name;
+        this.isAdmin = isAdmin;
         this.email = email;
     }
 
@@ -29,28 +27,20 @@ public class StudentPojo implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNick() {
+        return nick;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public String getSurname() {
-        return surname;
+    public int getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
     public String getEmail() {

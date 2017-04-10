@@ -24,10 +24,9 @@ public class DialogViewController implements Initializable {
         StudentPojo pojo = new StudentPojo(); 
         System.out.println(ssql.studentMaxID());
         pojo.setId(ssql.studentMaxID());
-        pojo.setName(name.getText());
-        pojo.setSurname(surname.getText());
-        pojo.setAge(Integer.parseInt(age.getText()));
+        pojo.setNick(name.getText());
         pojo.setEmail(email.getText());
+        pojo.setIsAdmin(Integer.parseInt(age.getText()));
         ssql.insertStudent(pojo);
         Stage stage = (Stage)btnInsert.getScene().getWindow();
         stage.close();
