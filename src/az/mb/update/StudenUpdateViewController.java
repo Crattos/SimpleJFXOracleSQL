@@ -43,7 +43,7 @@ public class StudenUpdateViewController implements Initializable {
          System.out.println(id);
          name.setText(pojo.getNick());
          email.setText(pojo.getEmail());
-        age.setText(String.valueOf(pojo.getIsAdmin()));
+         age.setText(String.valueOf(pojo.getIsAdmin()));
 
     }
 }

@@ -12,13 +12,6 @@ public class StudentPojo implements Serializable {
     public StudentPojo() {
     }
 
-    public StudentPojo(int id, String name, String surname, int isAdmin, String email) {
-        this.id = id;
-        this.nick = name;
-        this.isAdmin = isAdmin;
-        this.email = email;
-    }
-
     public int getId() {
         return id;
     }

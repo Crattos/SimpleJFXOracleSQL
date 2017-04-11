@@ -44,7 +44,7 @@ public class StudentSQL {
     public void insertStudent(StudentPojo pojo){
         try {
             connected();
-            String sql = "Insert into Uzytkownicy values("+pojo.getId()+",'"+pojo.getNick()+"','"+"',"+pojo.getEmail()+",'"+pojo.getIsAdmin()+"')";
+            String sql = "Insert into Uzytkownicy values("+pojo.getId()+",'"+pojo.getNick()+"','"+pojo.getEmail()+"',"+pojo.getIsAdmin()+")";
             statement.executeUpdate(sql);
             System.out.println(sql);
             closed();
@@ -124,7 +124,7 @@ public class StudentSQL {
         try {
             connected();
             int max = 1;
-            ResultSet rs = statement.executeQuery("Select max(ID_UZYTKOWNIKA) From Uzytkownicy");
+            ResultSet rs = statement.executeQuery("Select max(id_uzytkownika) From Uzytkownicy");
             rs.next();
             max = rs.getInt(1);
             rs.close();

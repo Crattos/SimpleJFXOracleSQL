@@ -17,16 +17,16 @@ public class DialogViewController implements Initializable {
     @FXML
     Button btnCancel,btnInsert;        
     @FXML
-    private TextField name,surname,age,email;        
-    StudentSQL ssql = new StudentSQL();
+    private TextField nick,admin,email;
+    private StudentSQL ssql = new StudentSQL();
     @FXML
     private void insert(ActionEvent event){
         StudentPojo pojo = new StudentPojo(); 
         System.out.println(ssql.studentMaxID());
         pojo.setId(ssql.studentMaxID());
-        pojo.setNick(name.getText());
+        pojo.setNick(nick.getText());
         pojo.setEmail(email.getText());
-        pojo.setIsAdmin(Integer.parseInt(age.getText()));
+        pojo.setIsAdmin(Integer.parseInt(admin.getText()));
         ssql.insertStudent(pojo);
         Stage stage = (Stage)btnInsert.getScene().getWindow();
         stage.close();

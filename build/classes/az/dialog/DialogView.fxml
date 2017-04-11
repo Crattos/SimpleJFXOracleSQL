@@ -12,7 +12,7 @@
     <Label layoutX="20.0" layoutY="70.0" text="Surname:" />
     <Label layoutX="20.0" layoutY="116.0" text="Age:" />
     <Label layoutX="20.0" layoutY="155.0" text="Email:" />
-    <TextField fx:id="name" layoutX="100.0" layoutY="25.0" prefWidth="189.0" promptText="name" />
+    <TextField fx:id="nick" layoutX="100.0" layoutY="25.0" prefWidth="189.0" promptText="name" />
     <TextField id="surnamme" fx:id="surname" layoutX="100.0" layoutY="67.0" prefWidth="189.0" promptText="surname" />
     <TextField fx:id="isAdmin" layoutX="100.0" layoutY="110.0" prefWidth="189.0" promptText="isAdmin" />
     <TextField fx:id="email" layoutX="100.0" layoutY="152.0" prefWidth="189.0" promptText="email" />
