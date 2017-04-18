@@ -3,6 +3,7 @@ package az.main;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,17 +98,20 @@ public class StudentSQL {
         }        
     }
     
-    public void updateStudent(StudentPojo pojo){
+    public void updateStudent(StudentPojo pojo)  {
         try {
             connected();
-            String sql = "Update Uzytkownicy set nick='"+pojo.getNick()+"',isAdmin = "+pojo.getIsAdmin()+",email = '"+pojo.getEmail()+"' Where id_uzytkownika = "+pojo.getId();
-            statement.executeUpdate(sql);
+            String sql = "Update Uzytkownicy set nick='"+pojo.getNick()+", email = '"+pojo.getEmail()+"', admin = "+pojo.getIsAdmin()+"' Where id_uzytkownika = "+pojo.getId();
             System.out.println(sql);
+            statement.executeUpdate(sql);
+
         } catch (Exception e) {
         }
         finally{
-        closed();
+
+            closed();
         }
+
     }
     
     public void deleteStudent(int id){

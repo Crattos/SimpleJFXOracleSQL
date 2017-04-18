@@ -3,6 +3,8 @@ package az.mb.update;
 import az.main.StudentPojo;
 import az.main.StudentSQL;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,16 +18,17 @@ public class StudenUpdateViewController implements Initializable {
     @FXML
     Button btnCancel, btnInsert;
     @FXML
-    private TextField name, surname, age, email;
+    private TextField nick, email, isAdmin ;
     StudentSQL ssql = new StudentSQL();
     public static Integer id;
     private StudentPojo pojo = new StudentPojo();
     @FXML
-    private void insert(ActionEvent event) {        
+    private void insert(ActionEvent event)  {
+
         pojo.setId(id);
-        pojo.setNick(name.getText());
+        pojo.setNick(nick.getText());
         pojo.setEmail(email.getText());
-        pojo.setIsAdmin(Integer.parseInt(age.getText()));
+        pojo.setIsAdmin(Integer.parseInt(isAdmin.getText()));
         ssql.updateStudent(pojo);
         Stage stage = (Stage) btnInsert.getScene().getWindow();
         stage.close();
@@ -41,9 +44,9 @@ public class StudenUpdateViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
          StudentPojo pojo = ssql.findByID(id);
          System.out.println(id);
-         name.setText(pojo.getNick());
+         nick.setText(pojo.getNick());
          email.setText(pojo.getEmail());
-         age.setText(String.valueOf(pojo.getIsAdmin()));
+         isAdmin.setText(String.valueOf(pojo.getIsAdmin()));
 
     }
 }
