@@ -8,13 +8,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="505.0" prefWidth="745.0" xmlns:fx="http://javafx.com/fxml" fx:controller="az.mb.ViewController">
   <children>
-    <TableView fx:id="tUzytkownicy" onMouseClicked="#selectRow" prefHeight="414.0" prefWidth="745.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <TableView fx:id="tDruzyna" onMouseClicked="#selectRow" prefHeight="414.0" prefWidth="745.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columns>
-        <TableColumn prefWidth="100.0" text="ID" fx:id="id" />
-        <TableColumn prefWidth="100.0" text="NAME" fx:id="nick" />
+        <TableColumn prefWidth="100.0" text="ID" fx:id="idDruzyna" />
+        <TableColumn prefWidth="100.0" text="NAME" fx:id="idMiasta_druzyna" />
         <TableColumn prefWidth="100.0" text="SURNAME" fx:id="surname" />
-        <TableColumn prefWidth="100.0" text="AGE" fx:id="isAdmin" />
-        <TableColumn prefWidth="100.0" text="EMAIL" fx:id="email" />
+        <TableColumn prefWidth="100.0" text="AGE" fx:id="punkty" />
+        <TableColumn prefWidth="100.0" text="EMAIL" fx:id="nazwaMiasta_druzyna" />
       </columns>
     </TableView>
     <HBox id="HBox" alignment="CENTER" layoutX="27.0" layoutY="428.0" spacing="5.0">
