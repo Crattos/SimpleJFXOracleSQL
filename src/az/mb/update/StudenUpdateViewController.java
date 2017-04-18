@@ -25,12 +25,12 @@ public class StudenUpdateViewController implements Initializable {
     @FXML
     private void insert(ActionEvent event)  {
 
+        Stage stage = (Stage) btnInsert.getScene().getWindow();
         pojo.setId(id);
         pojo.setNick(nick.getText());
         pojo.setEmail(email.getText());
         pojo.setIsAdmin(Integer.parseInt(isAdmin.getText()));
         ssql.updateStudent(pojo);
-        Stage stage = (Stage) btnInsert.getScene().getWindow();
         stage.close();
     }
 

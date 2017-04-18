@@ -101,16 +101,15 @@ public class StudentSQL {
     public void updateStudent(StudentPojo pojo)  {
         try {
             connected();
-            String sql = "Update Uzytkownicy set nick='"+pojo.getNick()+", email = '"+pojo.getEmail()+"', admin = "+pojo.getIsAdmin()+"' Where id_uzytkownika = "+pojo.getId();
+            String sql = "Update Uzytkownicy set nick='"+pojo.getNick()+"', email = '"+pojo.getEmail()+"', admin = "+pojo.getIsAdmin()+" Where id_uzytkownika = "+pojo.getId();
             System.out.println(sql);
             statement.executeUpdate(sql);
-
-        } catch (Exception e) {
-        }
-        finally{
+            connection.commit();
 
             closed();
+        } catch (Exception e) {
         }
+
 
     }
     
