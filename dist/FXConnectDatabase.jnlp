@@ -20,6 +20,6 @@
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FXConnectDatabase" >
     <param name="requiredFXVersion" value="2.2+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="az.mb.FXConnectDatabaseModel"  name="FXConnectDatabase" />
+  <jfx:javafx-desc width="800" height="600" main-class="az.GlownyWidok.MainProgram" name="FXConnectDatabase" />
   <update check="always"/>
 </jnlp>

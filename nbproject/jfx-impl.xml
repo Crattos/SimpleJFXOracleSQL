@@ -462,7 +462,7 @@
     </target>
     
     
-    <!-- Check availability of main JavaFX runtime jar (jfxrt.jar) -->
+    <!-- Check availability of LogikaSQL JavaFX runtime jar (jfxrt.jar) -->
 
     <target name="-check-property-javafx.runtime">
         <echo message="javafx.runtime = ${javafx.runtime}" level="verbose"/>
