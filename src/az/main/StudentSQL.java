@@ -76,6 +76,28 @@ public class StudentSQL {
         closed();
         }        
     }
+
+    public ObservableList<DzialPojo> listDzialy(){
+        try {
+            connected();
+            ObservableList<DzialPojo>list = FXCollections.observableArrayList();
+            ResultSet rs = statement.executeQuery("Select * from Dzialy");
+            while(rs.next()){
+                DzialPojo pojo = new DzialPojo();
+                pojo.setIdDzialy(rs.getString(1));
+                pojo.setIdUzytkownicy(rs.getInt(2));
+                pojo.setNazwa(rs.getString(3));
+                list.add(pojo);
+                System.out.println(pojo.getIdDzialy()+" "+pojo.getIdUzytkownicy()+" "+pojo.getNazwa());
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }finally{
+            closed();
+        }
+    }
      public List<StudentPojo> listStudent2(){
         try {
             connected();
@@ -104,10 +126,12 @@ public class StudentSQL {
             String sql = "Update Uzytkownicy set nick='"+pojo.getNick()+"', email = '"+pojo.getEmail()+"', admin = "+pojo.getIsAdmin()+" Where id_uzytkownika = "+pojo.getId();
             System.out.println(sql);
             statement.executeUpdate(sql);
-            connection.commit();
+            //connection.commit();
 
-            closed();
+
         } catch (Exception e) {
+        }finally {
+            closed();
         }
 
 

@@ -1,6 +1,7 @@
 package az.mb;
 
 import az.dialog.DialogStudent;
+import az.main.DzialPojo;
 import az.main.StudentPojo;
 import az.main.StudentSQL;
 import az.mb.update.StudenUpdateViewController;
@@ -23,22 +24,31 @@ import javafx.stage.Stage;
 public class ViewController implements Initializable {
     
     @FXML
-    private TableView<StudentPojo> table;
+    private TableView<StudentPojo> tUzytkownicy;
+    @FXML
+    private TableView<DzialPojo> tDzialy;
     @FXML
     private TableColumn<StudentPojo,String> nick,email;
     @FXML
+    private TableColumn<StudentPojo,String> nazwa;
+    @FXML
     private TableColumn<StudentPojo,Integer> isAdmin,id;
     @FXML
+    private TableColumn<StudentPojo,Integer> idUzytkownika, id_Dzialu;
+    @FXML
     private ObservableList<StudentPojo> list = FXCollections.observableArrayList();
-    StudentSQL ssql = new StudentSQL();
+    @FXML
+    private ObservableList<DzialPojo> listDzialy = FXCollections.observableArrayList();
+    private StudentSQL ssql = new StudentSQL();
     @FXML
     private Button btnInsert,btnDelete,btnRefresh;
     
     @FXML
     private void insert(ActionEvent event) throws IOException{
+
         new DialogStudent().start(new Stage());
         list = ssql.listStudent();
-        table.setItems(list);
+        tUzytkownicy.setItems(list);
     }
     @FXML
     private void update(ActionEvent event){
@@ -47,20 +57,23 @@ public class ViewController implements Initializable {
     @FXML
     private void refresh(ActionEvent event){
         list = ssql.listStudent();
-        table.setItems(list);
+        listDzialy = ssql.listDzialy();
+        tUzytkownicy.setItems(list);
+        tDzialy.setItems(listDzialy);
     }
     @FXML
     private void delete(){
-        StudentPojo pojo = table.getSelectionModel().getSelectedItem();
+
+        StudentPojo pojo = tUzytkownicy.getSelectionModel().getSelectedItem();
         ssql.deleteStudent(pojo.getId());
         System.out.println(pojo.getId());
         list = ssql.listStudent();
-        table.setItems(list);
+        tUzytkownicy.setItems(list);
     }
     @FXML
     private void selectRow(MouseEvent event){
         if(event.getClickCount()==2){           
-           StudentPojo pojo = table.getSelectionModel().getSelectedItem();
+           StudentPojo pojo = tUzytkownicy.getSelectionModel().getSelectedItem();
             StudenUpdateViewController.id = pojo.getId();
             System.out.println(StudenUpdateViewController.id);
             new StudentUppdateModel().start(new Stage());
@@ -74,9 +87,17 @@ public class ViewController implements Initializable {
         nick.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("nick"));
         email.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("email"));
         isAdmin.setCellValueFactory(new PropertyValueFactory<StudentPojo,Integer>("isAdmin"));
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        id_Dzialu.setCellValueFactory(new PropertyValueFactory<StudentPojo,Integer>("id_dzialu"));
+        idUzytkownika.setCellValueFactory(new PropertyValueFactory<StudentPojo,Integer>("id_uzytkownika"));
+        nazwa.setCellValueFactory(new PropertyValueFactory<StudentPojo,String>("nazwa"));
+
+        tUzytkownicy.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tDzialy.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         list = ssql.listStudent();
-        table.setItems(list);
-        
+        listDzialy = ssql.listDzialy();
+        tUzytkownicy.setItems(list);
+        tDzialy.setItems(listDzialy);
     }
 }

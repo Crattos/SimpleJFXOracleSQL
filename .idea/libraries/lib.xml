@@ -1,6 +1,7 @@
 <component name="libraryTable">
-  <library name="ojdbc7">
+  <library name="lib">
     <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.0.7.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/ojdbc7.jar!/" />
     </CLASSES>
     <JAVADOC />
